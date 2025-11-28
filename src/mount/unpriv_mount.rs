@@ -13,7 +13,7 @@ use std::{
     process::{Child, Command, Stdio},
 };
 
-const FUSERMOUNT_PROG: &str = "/usr/bin/fusermount";
+const FUSERMOUNT_PROG: &str = "fusermount";
 const FUSE_COMMFD_ENV: &str = "_FUSE_COMMFD";
 
 fn fusermount_path(opts: &MountOptions) -> &Path {

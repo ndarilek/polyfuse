@@ -101,6 +101,8 @@ impl UnprivMount {
                 // なので、fd受信用の UnixStream を閉じてバックグラウンドの fusermount を終了する。
                 drop(input);
                 let _st = child.wait()?;
+                // Fallback in case fusermount child died before unmounting.
+                umount(mountpoint, fusermount_path(mountopts))?;
             }
             UmountMode::Explicit => {
                 // fusermount は fd を受信した直後に終了しているので、明示的に umount(2) を呼ぶ必要がある。
